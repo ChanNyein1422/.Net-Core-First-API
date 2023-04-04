@@ -1,0 +1,56 @@
+﻿@using Infra.Services;
+@using Data.Model;
+@using X.PagedList;
+@using X.PagedList.Mvc.Core;
+@using X.PagedList.Web.Common
+@model PagedListClient<tbUser>;
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Bio</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Results)
+        {
+            <tr id="div_user_@item.ID">
+                <th scope="row">@item.ID</th>
+                <td>@item.Username</td>
+                <td>@item.Email</td>
+                <td>@item.Bio</td>
+                <td>
+                      <button type="button" data-id="@item.ID" class="btn btn-outline-primary btn-xs" onclick="load_editform(this)"><i class="bi bi-pencil"></i></button>
+                      <button type="button" class="btn btn-danger btn-xs"
+                        data-roleid="@item.ID"
+                        data-action="@Url.Action("userdelete", "User")"
+                        data-modalid="modal_delete"
+                        data-id="@item.ID"
+                        @{
+                           var infoid = "div_user_" + item.ID;
+                         }
+                        data-infoid="@infoid"
+                        onclick="deleteconfirmation(this)">
+                        <i class="bi bi-trash"></i>
+
+                    </button>
+                </td>
+                
+            </tr>
+        }
+
+    </tbody>
+</table>
+
+
+
+
+
+<div class="pagedList" style="text-align:center;display: inline">
+   @Html.PagedListPager(Model.Results, page => Url.Action("_list", "User",
+    new { page }), PagedListRenderOptions.ClassicPlusFirstAndLast)
+</div>

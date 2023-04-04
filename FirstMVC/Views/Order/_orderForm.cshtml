@@ -1,0 +1,31 @@
+﻿@model Data.Model.tbOrder
+
+<!-- Modal -->
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="orderForm">
+                <input type="hidden" name="ID" value="@Model.ID" />
+                <div class="modal-body">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="OrderID" name="OrderID" value="@Model.OrderID" aria-label="OrderID" aria-describedby="basic-addon1">
+        </div>
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="OrderDetail" name="OrderDetails" value="@Model.OrderDetails" aria-label="OrderDetail" aria-describedby="basic-addon1">
+                    </div>
+                    
+                    <div class="input-group mb-3">
+                        <select id="user_dd" name="UserID" class="form-select" aria-label="Default select example">
+                            
+                        </select>
+                        <input type="hidden" value="@Model.UserID" id="UserID" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        

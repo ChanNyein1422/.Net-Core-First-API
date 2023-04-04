@@ -1,0 +1,34 @@
+﻿@model Data.Model.tbUser
+
+
+<!-- Modal -->
+
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="userForm">
+                <input type="hidden" name="ID" value="@Model.ID" />
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="Username" name="Username" value="@Model.Username" aria-label="Username" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                      <input type="text" class="form-control" placeholder="Email" name="Email" value="@Model.Email" aria-label="Email" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Bio" name="Bio" value="@Model.Bio" aria-label="Bio" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3">
+                        <select id="dept_dd" name="DeptID" class="form-select" aria-label="Default select example">
+                            
+                        </select>
+                        <input type="hidden" value="@Model.DeptID" id="DeptID" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        
