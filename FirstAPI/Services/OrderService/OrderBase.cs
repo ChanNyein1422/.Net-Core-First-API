@@ -92,26 +92,6 @@ namespace FirstAPI.Services.OrderService
         //Separated User Order View
         public async Task<Model<SeparatedUserViewModel>> GetOrderBySeparatedUser(int? page = 1, int? pageSize = 10)
         {
-            // Expression<Func<tbOrder, bool>> basicFilter = null;
-            // IQueryable<tbOrder> query = _uow.orderRepo.GetAll().Where(o => o.IsDeleted != true && ).AsQueryable();
-            /*
-       var query1 = (from user in _uow.userRepo.GetAll().Where(a => a.IsDeleted != true)
-                     join order in _uow.orderRepo.GetAll().Where(a => a.IsDeleted != true)
-                     on user.ID equals order.UserID
-                     select new { user, order });
-
-
-       var list = query1.OrderBy(a => a.user.ID).ToList();
-
-       var result = (from l in list
-                     select new SeparatedUserViewModel
-                     {
-                         user = l.user,
-                         orders = _uow.orderRepo.GetAll().Where(a => a.UserID == l.order.UserID && a.IsDeleted != true).ToList(),
-                     }).ToList();
-       */
-
-
             var result = _uow.userRepo.GetAll().Where(a => a.IsDeleted != true)
                                 .GroupJoin(_uow.orderRepo.GetAll().Where(o => o.IsDeleted != true),
                                   user => user.ID,
@@ -120,13 +100,8 @@ namespace FirstAPI.Services.OrderService
                                       user = user,
                                       orders = orders.ToList(),
 
-                                  }).ToList();
-            //if (!String.IsNullOrEmpty(q))
-            //{
-            //    query = query.Where(basicFilter);
-            //}
+                                  }).AsQueryable();
 
-            //query = SORTLIT<tbOrder>.Sort(query, sortVal, sortDir);
             var res = await PagingService<SeparatedUserViewModel>.getPagingList(page ?? 1, pageSize ?? 10, result);
             return res;
         }

@@ -19,7 +19,6 @@ builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation()
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("") });
-
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<IUserApiRequest, UserApiRequest>();
 builder.Services.AddScoped<IDeptApiRequest, DeptApiRequest>();

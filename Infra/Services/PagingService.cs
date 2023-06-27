@@ -34,7 +34,7 @@ namespace Infra.Services
 
         }
 
-        public static async Task<Model<T>> getPagingList(int page, int pageSize, List<T> result, string additionaldata = "")
+        public static async Task<Model<T>> getPagingList(int page, int pageSize, IQueryable<T> result, string additionaldata = "")
         {
             try
             {

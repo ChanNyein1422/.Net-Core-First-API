@@ -90,7 +90,8 @@ namespace FirstAPI.Services.UserService
                 query = query.Where(basicFilter);
             }
 
-            IQueryable<UserDeptViewModel> result = from u in query
+            IQueryable<UserDeptViewModel> result = from u in _uow.userRepo.GetAll()
+                                            .Where(a => a.IsDeleted != true)
                                                    join d in _uow.deptRepo.GetAll()
                                                    on u.DeptID equals d.ID
                                                   
